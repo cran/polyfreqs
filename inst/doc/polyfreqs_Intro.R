@@ -29,9 +29,9 @@ thn<-100
 ofile<-"polyfreqs_100k-mcmc.out"
 
 ## ---- results='hide'-----------------------------------------------------
-out2 <- polyfreqs(dat$tot_read_mat, 
-                  dat$ref_read_mat, 
-                  ploidy=4,iter=itr, 
+out2 <- polyfreqs(dat$tot_read_mat,
+                  dat$ref_read_mat,
+                  ploidy=4,iter=itr,
                   thin=thn, outfile=ofile)
 
 ## ---- warning=FALSE, message=FALSE---------------------------------------
@@ -72,24 +72,24 @@ effectiveSize(multi_het_exp)
 # Plot histograms to visually compare the estimates
 hist(multi_het_exp, col="blue", main="Heterozygosity", xlab="", ylim=c(0,200))
 hist(multi_het_obs, col="red", add=T)
-legend(x="topright", 
-       c("expected","observed"), 
-       col=c("blue","red"), 
+legend(x="topright",
+       c("expected","observed"),
+       col=c("blue","red"),
        fill=c("blue","red"), bty="n")
 
 # Gets means and 95% highest posterior density (HPD) intervals
-list("mean_exp" = mean(multi_het_exp), 
-     "95HPD_exp" = quantile(multi_het_exp, c(0.025, 0.975)), 
-     "mean_obs" = mean(multi_het_obs), 
+list("mean_exp" = mean(multi_het_exp),
+     "95HPD_exp" = quantile(multi_het_exp, c(0.025, 0.975)),
+     "mean_obs" = mean(multi_het_obs),
      "95HPD_obs" = quantile(multi_het_obs, c(0.025, 0.975)))
 
 ## ---- fig.width=7--------------------------------------------------------
 # Read in the table using the code below if you haven't already done so.
 # p_table <- read.table("polyfreqs_100k-mcmc.out", header=T, row.names=1)
 
-pps <- polyfreqs_pps(as.matrix(p_table[251:1000,]), 
-                     dat$tot_read_mat, 
-                     dat$ref_read_mat, 
+pps <- polyfreqs_pps(as.matrix(p_table[251:1000,]),
+                     dat$tot_read_mat,
+                     dat$ref_read_mat,
                      ploidy, error)
 
 names(pps)
